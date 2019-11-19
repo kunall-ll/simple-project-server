@@ -15,8 +15,8 @@ pipeline {
                 }
             }
         stage('Deploy') {
-            steps {
-		echo "Deploy"
+            steps {sh 'docker push kunall/simple-project:latest'
+	
             }
         }
     }
