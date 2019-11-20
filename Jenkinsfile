@@ -1,55 +1,55 @@
 pipeline {
     agent any
-environment {
-    VERSION = readMavenPom().getVersion()
-}
+	environment {
+    		VERSION = readMavenPom().getVersion()
+	}
     stages {
-	stage('version'){
-		steps{
-		echo "${VERSION}"}
-		}
-        stage('Testing') {
+	    stage('Version') {
+		    steps {
+			    echo "${VERSION}"
+		    }
+	    }
+        stage('Test') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
-	            sh 'mvn test -Dtest=IntegrationSuite'
+		    sh 'mvn test -Dtest=IntegrationSuite'
                 }
             }
         stage('Build') {
             steps {
-		 sh 'mvn package -DskipTests'
-		 sh 'docker build -t="kunall/simple-project:latest" .'
+                    sh 'mvn package -DskipTests'
+		    sh 'docker build -t="kunall/simple-project:${VERSION}" .'
                 }
             }
         stage('Deploy') {
-            steps {sh 'docker push kunall/simple-project:latest'
-}     }   
-stage('Testing Environment') {
+            steps {
+		    sh 'docker push kunall/simple-project:${VERSION}'
+                }
+            }
+	 stage('Testing Environment') {
             steps {
                 echo "hello"
+                }
             }
-        }
-feature-addfail
-        stage('Staging') {
-            when{
-			expression{ 
-		env.BRANCH_NAME == 'developer'}}
-	steps{ echo "staging"
-
-        }
-
-        stage('Production') {
-            
-                when {
-		    expression{
-			env.BRANCH_NAME == 'master'}}
-	    steps{ echo "production"
+         stage('Staging') {
+		 when {
+			 expression {
+				 env.BRANCH_NAME=='developer'
+			 }
+		 }
+            steps {
+                echo "hello"
+                 }
             }
-        }
-    
-	
-            }
-        
-    
-
+          stage('Production') {
+	     when  {
+		expression {
+			env.BRANCH_NAME=='master'
+		}
+	     }
+             steps {
+                echo "hello"
+                  }
+             }
+    }
 }
-
