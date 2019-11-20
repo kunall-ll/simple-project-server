@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Testing Environment') {
+        stage('Testing') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
 	            sh 'mvn test -Dtest=IntegrationSuite'
@@ -16,9 +16,26 @@ pipeline {
             }
         stage('Deploy') {
             steps {sh 'docker push kunall/simple-project:latest'
+}     }   
+stage('Testing Environment') {
+            steps {
+                echo "hello"
+            }
+        }
+        stage('Staging') {
+            steps {
+                echo "hello"
+            }
+        }
+        stage('Production') {
+            steps {
+                echo "hello"
+            }
+        }
+    
 	
             }
         }
-    }
-}
+    
+
 
