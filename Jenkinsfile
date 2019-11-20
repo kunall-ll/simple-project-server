@@ -1,7 +1,13 @@
 pipeline {
     agent any
-
+environment {
+    VERSION = readMavenPom().getVersion()
+}
     stages {
+	stage('version'){
+		steps{
+		echo "$(VERSION)"}
+		}
         stage('Testing') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
@@ -22,11 +28,13 @@ stage('Testing Environment') {
                 echo "hello"
             }
         }
-stage('Staging') {
+feature-addfail
+        stage('Staging') {
             when{
-                        expression{
-                env.BRANCH_NAME == 'developer'}}
-        steps{ echo "staging"
+			expression{ 
+		env.BRANCH_NAME == 'developer'}}
+	steps{ echo "staging"
+
         }
 
         stage('Production') {
