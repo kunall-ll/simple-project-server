@@ -28,11 +28,13 @@ stage('Testing Environment') {
                 echo "hello"
             }
         }
+feature-addfail
         stage('Staging') {
             when{
 			expression{ 
 		env.BRANCH_NAME == 'developer'}}
 	steps{ echo "staging"
+
         }
 
         stage('Production') {
