@@ -34,24 +34,24 @@ public class NoteController {
 	@RequestMapping(path = "note/", method = {RequestMethod.GET})
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<NoteDto> getNotes(){
-		return new ArrayList<NoteDto>(service.getNotes());
+		//return new ArrayList<NoteDto>(service.getNotes());
 	}
 	
 	@RequestMapping(path = "note/", method = {RequestMethod.POST})
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public NoteDto createNote(@RequestBody NoteDto note){
-		return service.createNote(note);
+	//public NoteDto createNote(@RequestBody NoteDto note){
+		//return service.createNote(note);
 	}
 	
 	@RequestMapping(path = "note/", method = {RequestMethod.PUT})
 	@ResponseStatus(code = HttpStatus.OK)
-	public NoteDto updateNote(@RequestBody NoteDto note) throws NotFoundException{
-		return service.updateNote(note);
+	//public NoteDto updateNote(@RequestBody NoteDto note) throws NotFoundException{
+		//return service.updateNote(note);
 	}
 	
 	@RequestMapping(path = "note/{id}", method = {RequestMethod.DELETE})
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public NoteDto deleteNote(@PathVariable Long id) throws NotFoundException{
-		return service.deleteNote(id);
+	//public NoteDto deleteNote(@PathVariable Long id) throws NotFoundException{
+		//return service.deleteNote(id);
 	}
 }
