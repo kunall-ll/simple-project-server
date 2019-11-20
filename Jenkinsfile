@@ -5,7 +5,9 @@ environment {
 }
     stages {
 	stage('version'){
+		steps{
 		echo "$(VERSION)"}
+		}
         stage('Testing') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
