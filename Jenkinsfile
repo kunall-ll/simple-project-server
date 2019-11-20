@@ -28,7 +28,7 @@ stage('Testing Environment') {
             }
         }
         stage('Production') {
-            steps {
+            
                 when {
 		    expression{
 			env.BRANCH_NAME == 'master'}}
@@ -38,7 +38,7 @@ stage('Testing Environment') {
     
 	
             }
-        }
+        
     
 
 }
