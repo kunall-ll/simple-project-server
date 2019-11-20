@@ -16,7 +16,7 @@ pipeline {
             }
         stage('Deploy') {
             steps {sh 'docker push kunall/simple-project:latest'
-}        
+}     }   
 stage('Testing Environment') {
             steps {
                 echo "hello"
@@ -37,5 +37,5 @@ stage('Testing Environment') {
             }
         }
     }
-}
+
 
